@@ -1,4 +1,4 @@
-package me.themondon;
+package me.TheMonDon;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -42,11 +42,9 @@ public class slimepad extends JavaPlugin implements Listener, CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        sender.sendMessage("");
         sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
         sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.8");
         sender.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
-        sender.sendMessage("");
         return true;
     }
 
