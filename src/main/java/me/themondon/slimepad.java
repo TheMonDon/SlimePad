@@ -28,9 +28,9 @@ public class slimepad extends JavaPlugin implements Listener
         height = this.getConfig().getDouble("height");
         distance = this.getConfig().getDouble("distance");
 
-        System.out.println("---------------------------");
-        System.out.println("         SlimePad v1.7     ");
-        System.out.println("---------------------------");
+        Bukkit.getLogger().info("---------------------------");
+        Bukkit.getLogger().info("         SlimePad v1.7     ");
+        Bukkit.getLogger().info("---------------------------");
 
         getServer().getPluginManager().registerEvents(this, this);
     }
@@ -60,8 +60,8 @@ public class slimepad extends JavaPlugin implements Listener
 
     @Override
     public void onDisable() {
-        System.out.println("---------------------------");
-        System.out.println("         SlimePad v1.7     ");
-        System.out.println("---------------------------");
+        Bukkit.getLogger().info("---------------------------");
+        Bukkit.getLogger().info("         SlimePad v1.7     ");
+        Bukkit.getLogger().info("---------------------------");
     }
 }
