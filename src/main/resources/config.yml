@@ -1,3 +1,8 @@
+# SlimePad Configuration file
+
+# Block name, based on 1.12 values. Can be lowercase.
 material: slime_block
+
+#Self explanatory but height and distance player moves on interact
 height: 1.5
 distance: 2

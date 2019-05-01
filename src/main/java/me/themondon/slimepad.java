@@ -19,7 +19,7 @@ public class slimepad extends JavaPlugin implements Listener
     @SuppressWarnings("unused")
     public void slimepad(){}
 
-    private ArrayList<UUID> jumpers = new ArrayList();
+    private ArrayList<UUID> jumpers = new ArrayList<>();
     private Material mat;
     private double height;
     private double distance;
@@ -32,10 +32,9 @@ public class slimepad extends JavaPlugin implements Listener
         distance = this.getConfig().getDouble("distance");
 
         System.out.println("---------------------------");
-        System.out.println("         SlimePad v1.6     ");
+        System.out.println("         SlimePad v1.7     ");
         System.out.println("---------------------------");
 
-        // Enable the class to check for new players using onPlayerJoin()
         getServer().getPluginManager().registerEvents(this, this);
     }
 
@@ -43,10 +42,10 @@ public class slimepad extends JavaPlugin implements Listener
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
         Player p = (Player)sender;
-        if (cmd.getName().equalsIgnoreCase("sp")) {
+        if (cmd.getName().equalsIgnoreCase("slimepad")) {
             p.sendMessage("");
             p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
-            p.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.6");
+            p.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.7");
             p.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
             p.sendMessage("");
             return true;
@@ -66,7 +65,7 @@ public class slimepad extends JavaPlugin implements Listener
     @Override
     public void onDisable() {
         System.out.println("---------------------------");
-        System.out.println("         SlimePad v1.6     ");
+        System.out.println("         SlimePad v1.7     ");
         System.out.println("---------------------------");
     }
 }

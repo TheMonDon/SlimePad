@@ -5,6 +5,6 @@ authors: [TheMonDon]
 description: slime block jump pads
 website: https://www.crafters-island.com
 commands:
-  sp:
+  slimepad:
     description: Slimepad command
-    aliases: [daddy, slimepad, spad]
+    aliases: [sp, spad. daddy]
