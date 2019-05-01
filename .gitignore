@@ -9,3 +9,4 @@
 target/classes/
 target/
 \.DS_Store
+src/main/java/me/TheMonDon/SlimePad.java
