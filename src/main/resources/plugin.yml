@@ -1,0 +1,10 @@
+name: slimepad
+version: ${project.version}
+main: me.themondon.slimepad
+authors: [TheMonDon]
+description: slime block jump pads
+website: https://www.crafters-island.com
+commands:
+  sp:
+    description: Slimepad command
+    aliases: [daddy, slimepad, spad]
