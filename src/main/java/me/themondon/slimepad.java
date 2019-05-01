@@ -1,13 +1,12 @@
 package me.themondon;
 
-import java.util.ArrayList;
-import java.util.UUID;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -28,25 +27,24 @@ public class slimepad extends JavaPlugin implements Listener, CommandExecutor {
         distance = this.getConfig().getDouble("distance");
 
         Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v1.7     ");
+        Bukkit.getLogger().info("         SlimePad v1.8     ");
         Bukkit.getLogger().info("---------------------------");
 
         getServer().getPluginManager().registerEvents(this, this);
-
         getCommand("slimepad").setExecutor(this);
     }
 
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v1.7     ");
+        Bukkit.getLogger().info("         SlimePad v1.8     ");
         Bukkit.getLogger().info("---------------------------");
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         sender.sendMessage("");
         sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
-        sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.7");
+        sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.8");
         sender.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
         sender.sendMessage("");
         return true;
