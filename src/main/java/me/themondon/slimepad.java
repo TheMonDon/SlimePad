@@ -16,10 +16,7 @@ import org.bukkit.util.Vector;
 
 public class slimepad extends JavaPlugin implements Listener
 {
-    @SuppressWarnings("unused")
-    public void slimepad(){}
 
-    private ArrayList<UUID> jumpers = new ArrayList<>();
     private Material mat;
     private double height;
     private double distance;
@@ -55,10 +52,9 @@ public class slimepad extends JavaPlugin implements Listener
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == mat && jumpers.contains(e.getPlayer().getUniqueId())) {
+        if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == mat) {
             e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(distance));
             e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), height, e.getPlayer().getVelocity().getZ()));
-            jumpers.add(e.getPlayer().getUniqueId());
         }
     }
 
