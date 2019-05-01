@@ -14,8 +14,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-public class slimepad extends JavaPlugin implements Listener
-{
+public class slimepad extends JavaPlugin implements Listener, CommandExecutor {
 
     private Material mat;
     private double height;
@@ -28,25 +27,28 @@ public class slimepad extends JavaPlugin implements Listener
         height = this.getConfig().getDouble("height");
         distance = this.getConfig().getDouble("distance");
 
-        System.out.println("---------------------------");
-        System.out.println("         SlimePad v1.7     ");
-        System.out.println("---------------------------");
+        Bukkit.getLogger().info("---------------------------");
+        Bukkit.getLogger().info("         SlimePad v1.7     ");
+        Bukkit.getLogger().info("---------------------------");
 
         getServer().getPluginManager().registerEvents(this, this);
+
+        getCommand("slimepad").setExecutor(this);
     }
 
+    @Override
+    public void onDisable() {
+        Bukkit.getLogger().info("---------------------------");
+        Bukkit.getLogger().info("         SlimePad v1.7     ");
+        Bukkit.getLogger().info("---------------------------");
+    }
 
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
-    {
-        Player p = (Player)sender;
-        if (cmd.getName().equalsIgnoreCase("slimepad")) {
-            p.sendMessage("");
-            p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
-            p.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.7");
-            p.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
-            p.sendMessage("");
-            return true;
-        }
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        sender.sendMessage("");
+        sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
+        sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.7");
+        sender.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
+        sender.sendMessage("");
         return true;
     }
 
@@ -56,12 +58,5 @@ public class slimepad extends JavaPlugin implements Listener
             e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(distance));
             e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), height, e.getPlayer().getVelocity().getZ()));
         }
-    }
-
-    @Override
-    public void onDisable() {
-        System.out.println("---------------------------");
-        System.out.println("         SlimePad v1.7     ");
-        System.out.println("---------------------------");
     }
 }
