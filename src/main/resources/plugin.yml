@@ -7,4 +7,4 @@ website: https://www.crafters-island.com
 commands:
   slimepad:
     description: SlimePad command
-    aliases: [sp, spad. daddy]
+    aliases: [sp, spad, daddy]
