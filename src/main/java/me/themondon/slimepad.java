@@ -15,9 +15,16 @@ import org.bukkit.util.Vector;
 
 public class slimepad extends JavaPlugin implements Listener
 {
-    @SuppressWarnings("unused")
-    public void slimepad(){}
 
+    //I would normally suggest having seperate classes for your commands and your listeners but 
+    //for such a small plugin I would say that having them in a single class is fine.
+
+    //You don't need a constructor for the main class of your plugin.
+    /*@SuppressWarnings("unused")
+    public void slimepad(){}*/
+
+    //I suggest using UUID here instead of Player so that way you don't cause memory leaks on accident
+    //private ArrayList<UUID> jumpers = new ArrayList();
     private ArrayList<Player> jumpers = new ArrayList();
     private Material mat;
     private double height;
@@ -42,6 +49,8 @@ public class slimepad extends JavaPlugin implements Listener
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
         Player p = (Player)sender;
+        //I suggest implementing permissions into your plugin so
+        //if (p.hasPermission("SlimePad.use") {
         if (cmd.getName().equalsIgnoreCase("sp")) {
             p.sendMessage("");
             p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
@@ -50,15 +59,16 @@ public class slimepad extends JavaPlugin implements Listener
             p.sendMessage("");
             return true;
         }
+        //}
         return true;
     }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == mat) {
+        if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == mat && jumpers.contains(e.getPlayer.getUniqueId())) {
             e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(distance));
             e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), height, e.getPlayer().getVelocity().getZ()));
-            jumpers.add(e.getPlayer());
+            jumpers.add(e.getPlayer().getUniqueId());
         }
     }
 
