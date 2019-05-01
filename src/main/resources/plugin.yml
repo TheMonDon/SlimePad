@@ -8,3 +8,8 @@ commands:
   sp:
     description: Slimepad command
     aliases: [daddy, slimepad, spad]
+    permission: SlimePad.use
+permissions:
+  SlimePad.use: 
+    descritption: Allows to use SlimePads
+    default: op
