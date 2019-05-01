@@ -1,6 +1,7 @@
 package me.themondon;
 
 import java.util.ArrayList;
+import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
@@ -18,7 +19,7 @@ public class slimepad extends JavaPlugin implements Listener
     @SuppressWarnings("unused")
     public void slimepad(){}
 
-    private ArrayList<Player> jumpers = new ArrayList();
+    private ArrayList<UUID> jumpers = new ArrayList();
     private Material mat;
     private double height;
     private double distance;
@@ -55,10 +56,10 @@ public class slimepad extends JavaPlugin implements Listener
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == mat) {
+        if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == mat && jumpers.contains(e.getPlayer().getUniqueId())) {
             e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(distance));
             e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), height, e.getPlayer().getVelocity().getZ()));
-            jumpers.add(e.getPlayer());
+            jumpers.add(e.getPlayer().getUniqueId());
         }
     }
 
