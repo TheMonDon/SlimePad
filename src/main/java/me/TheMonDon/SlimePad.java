@@ -1,5 +1,6 @@
 package me.TheMonDon;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -27,9 +28,10 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
         distance = this.getConfig().getDouble("distance");
 
         Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v1.8     ");
+        Bukkit.getLogger().info("         SlimePad v1.9     ");
         Bukkit.getLogger().info("---------------------------");
 
+        Metrics metrics = new Metrics(this);
         getServer().getPluginManager().registerEvents(this, this);
         getCommand("slimepad").setExecutor(this);
     }
@@ -37,13 +39,13 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v1.8     ");
+        Bukkit.getLogger().info("         SlimePad v1.9     ");
         Bukkit.getLogger().info("---------------------------");
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
-        sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.8");
+        sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.9");
         sender.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
         return true;
     }
