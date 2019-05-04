@@ -15,11 +15,14 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
+import java.util.List;
+
 public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
 
     private Material mat;
     private double height;
     private double distance;
+    private List<String> enabledWorlds = getConfig().getStringList("enabledWorlds");
 
     @Override
     public void onEnable() {
@@ -29,7 +32,7 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
         distance = this.getConfig().getDouble("distance");
 
         Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v2.0     ");
+        Bukkit.getLogger().info("         SlimePad v2.1     ");
         Bukkit.getLogger().info("---------------------------");
 
         Metrics metrics = new Metrics(this);
@@ -41,12 +44,14 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (cmd.getName().equalsIgnoreCase("slimepad")) {
             sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
-            sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v1.9");
+            sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v2.1");
             sender.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
         }
         if (cmd.getName().equalsIgnoreCase("slimepad-reload")) {
             if (sender.hasPermission("sp.reload")) {
+                enabledWorlds.clear();
                 reloadConfig();
+                enabledWorlds = getConfig().getStringList("enabledWorlds");
                 sender.sendMessage(ChatColor.GREEN + "Configuration Reloaded!");
             }
             return true;
@@ -57,7 +62,7 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();
-        if(getConfig().getStringList("enabledWorlds").contains(p.getLocation().getWorld().getName())){
+        if(enabledWorlds.contains(p.getLocation().getWorld().getName())){
             if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == mat) {
                 e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(distance));
                 e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), height, e.getPlayer().getVelocity().getZ()));
@@ -68,7 +73,7 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v2.0     ");
+        Bukkit.getLogger().info("         SlimePad v2.1     ");
         Bukkit.getLogger().info("---------------------------");
     }
 }
