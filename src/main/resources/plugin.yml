@@ -8,3 +8,8 @@ commands:
   slimepad:
     description: SlimePad command
     aliases: [sp, spad, daddy]
+  slimepad-reload:
+    description: SlimePad reload command
+    permission: sp.reload
+    permission-message: You do not have access to sp.reload
+    aliases: [spreload, spr]

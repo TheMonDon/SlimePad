@@ -1,4 +1,5 @@
 # SlimePad Configuration file
+# SlimePad v2.0
 
 # Block name, based on 1.12 values. Can be lowercase.
 material: slime_block
@@ -6,3 +7,7 @@ material: slime_block
 #Self explanatory but height and distance player moves on interact
 height: 1.5
 distance: 2
+
+#Worlds that the jump pads are enabled in
+enabledWorlds:
+  - world
