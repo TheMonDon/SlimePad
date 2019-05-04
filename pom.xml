@@ -38,7 +38,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>me.TheMonDon.SlimePad</shadedPattern>
+                            <shadedPattern>TheMonDon.SlimePad</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
