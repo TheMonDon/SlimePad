@@ -32,7 +32,7 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
         distance = this.getConfig().getDouble("distance");
 
         Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v2.1     ");
+        Bukkit.getLogger().info("         SlimePad v2.2     ");
         Bukkit.getLogger().info("---------------------------");
 
         Metrics metrics = new Metrics(this);
@@ -52,6 +52,9 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
                 enabledWorlds.clear();
                 reloadConfig();
                 enabledWorlds = getConfig().getStringList("enabledWorlds");
+                mat = Material.getMaterial(this.getConfig().getString("material").toUpperCase());
+                height = this.getConfig().getDouble("height");
+                distance = this.getConfig().getDouble("distance");
                 sender.sendMessage(ChatColor.GREEN + "Configuration Reloaded!");
             }
             return true;
@@ -73,7 +76,7 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v2.1     ");
+        Bukkit.getLogger().info("         SlimePad v2.2     ");
         Bukkit.getLogger().info("---------------------------");
     }
 }
