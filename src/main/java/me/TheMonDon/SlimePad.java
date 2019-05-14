@@ -44,7 +44,7 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (cmd.getName().equalsIgnoreCase("slimepad")) {
             sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
-            sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v2.1");
+            sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v2.2");
             sender.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
         }
         if (cmd.getName().equalsIgnoreCase("slimepad-reload")) {
@@ -55,7 +55,7 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
                 mat = Material.getMaterial(this.getConfig().getString("material").toUpperCase());
                 height = this.getConfig().getDouble("height");
                 distance = this.getConfig().getDouble("distance");
-                sender.sendMessage(ChatColor.GREEN + "Configuration Reloaded!");
+                sender.sendMessage(ChatColor.GREEN + "SlimePad Configuration Reloaded.");
             }
             return true;
         }
@@ -67,8 +67,8 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
         Player p = e.getPlayer();
         if(enabledWorlds.contains(p.getLocation().getWorld().getName())){
             if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == mat) {
-                e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(distance));
-                e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), height, e.getPlayer().getVelocity().getZ()));
+                p.setVelocity(e.getPlayer().getLocation().getDirection().multiply(distance));
+                p.setVelocity(new Vector(e.getPlayer().getVelocity().getX(), height, e.getPlayer().getVelocity().getZ()));
             }
         }
     }
