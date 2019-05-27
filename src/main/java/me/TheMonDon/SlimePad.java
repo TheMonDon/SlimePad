@@ -29,11 +29,10 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
         mat = Material.getMaterial(getConfig().getString("material").toUpperCase());
         height = getConfig().getDouble("height");
         distance = getConfig().getDouble("distance");
-        enabledWorls = = getConfig().getStringList("enabledWorlds");
+        enabledWorlds = = getConfig().getStringList("enabledWorlds");
         Bukkit.getLogger().info("---------------------------");
         Bukkit.getLogger().info("         SlimePad v2.2     ");
         Bukkit.getLogger().info("---------------------------");
-
         Metrics metrics = new Metrics(this);
         getServer().getPluginManager().registerEvents(this, this);
         getCommand("slimepad").setExecutor(this);
@@ -81,6 +80,6 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
         mat = null;
         height = null;
         distance = null;
-        enabledWorls = null;
+        enabledWorlds = null;
     }
 }
