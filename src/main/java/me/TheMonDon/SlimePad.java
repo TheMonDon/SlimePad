@@ -18,23 +18,21 @@ import org.bukkit.util.Vector;
 import java.util.List;
 
 public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
-
     private Material mat;
     private double height;
     private double distance;
-    private List<String> enabledWorlds = getConfig().getStringList("enabledWorlds");
+    private List<String> enabledWorlds;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        mat = Material.getMaterial(this.getConfig().getString("material").toUpperCase());
-        height = this.getConfig().getDouble("height");
-        distance = this.getConfig().getDouble("distance");
-
+        mat = Material.getMaterial(getConfig().getString("material").toUpperCase());
+        height = getConfig().getDouble("height");
+        distance = getConfig().getDouble("distance");
+        enabledWorlds = = getConfig().getStringList("enabledWorlds");
         Bukkit.getLogger().info("---------------------------");
         Bukkit.getLogger().info("         SlimePad v2.2     ");
         Bukkit.getLogger().info("---------------------------");
-
         Metrics metrics = new Metrics(this);
         getServer().getPluginManager().registerEvents(this, this);
         getCommand("slimepad").setExecutor(this);
@@ -46,6 +44,7 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
             sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
             sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v2.2");
             sender.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
+            return true;
         }
         if (cmd.getName().equalsIgnoreCase("slimepad-reload")) {
             if (sender.hasPermission("sp.reload")) {
@@ -78,5 +77,9 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
         Bukkit.getLogger().info("---------------------------");
         Bukkit.getLogger().info("         SlimePad v2.2     ");
         Bukkit.getLogger().info("---------------------------");
+        mat = null;
+        height = null;
+        distance = null;
+        enabledWorlds = null;
     }
 }
