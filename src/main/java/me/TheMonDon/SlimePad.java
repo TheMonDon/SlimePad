@@ -29,11 +29,9 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
         mat = Material.getMaterial(getConfig().getString("material").toUpperCase());
         height = getConfig().getDouble("height");
         distance = getConfig().getDouble("distance");
-        enabledWorlds = = getConfig().getStringList("enabledWorlds");
-        Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v2.2     ");
-        Bukkit.getLogger().info("---------------------------");
-        Metrics metrics = new Metrics(this);
+        enabledWorlds = getConfig().getStringList("enabledWorlds");
+        Bukkit.getLogger().info("SlimePad 2.4 has been enabled.");
+        new Metrics(this, 4595);
         getServer().getPluginManager().registerEvents(this, this);
         getCommand("slimepad").setExecutor(this);
         getCommand("slimepad-reload").setExecutor(this);
@@ -41,22 +39,28 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (cmd.getName().equalsIgnoreCase("slimepad")) {
-            sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
-            sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v2.2");
-            sender.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
-            return true;
-        }
-        if (cmd.getName().equalsIgnoreCase("slimepad-reload")) {
-            if (sender.hasPermission("sp.reload")) {
-                enabledWorlds.clear();
-                reloadConfig();
-                enabledWorlds = getConfig().getStringList("enabledWorlds");
-                mat = Material.getMaterial(this.getConfig().getString("material").toUpperCase());
-                height = this.getConfig().getDouble("height");
-                distance = this.getConfig().getDouble("distance");
-                sender.sendMessage(ChatColor.GREEN + "SlimePad Configuration Reloaded.");
+            if (args.length > 0){
+                if (args[0].equalsIgnoreCase("reload")) {
+                    if (sender.hasPermission("sp.reload")) {
+                        enabledWorlds.clear();
+                        reloadConfig();
+                        enabledWorlds = getConfig().getStringList("enabledWorlds");
+                        mat = Material.getMaterial(this.getConfig().getString("material").toUpperCase());
+                        height = this.getConfig().getDouble("height");
+                        distance = this.getConfig().getDouble("distance");
+                        sender.sendMessage(ChatColor.GREEN + "SlimePad Configuration Reloaded.");
+                    } else {
+                        sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+                        return true;
+                    }
+                }
+            } else {
+                sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "SlimePad");
+                sender.sendMessage(ChatColor.AQUA.toString() + "Usage: /slimepad reload");
+                sender.sendMessage(ChatColor.AQUA.toString() + "Version" + ChatColor.WHITE + ": " + ChatColor.GRAY + "v2.4");
+                sender.sendMessage(ChatColor.AQUA.toString() + "Developer" + ChatColor.WHITE + ": " + ChatColor.GRAY + "TheMonDon");
+                return true;
             }
-            return true;
         }
         return true;
     }
@@ -74,12 +78,10 @@ public class SlimePad extends JavaPlugin implements Listener, CommandExecutor {
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger().info("---------------------------");
-        Bukkit.getLogger().info("         SlimePad v2.2     ");
-        Bukkit.getLogger().info("---------------------------");
+        Bukkit.getLogger().info("SlimePad 2.4 has been disabled.");
         mat = null;
-        height = null;
-        distance = null;
+        height = 0;
+        distance = 0;
         enabledWorlds = null;
     }
 }
